@@ -22,5 +22,12 @@ namespace Util.Extensions
             }
             return output;
         }
+
+        public static string Print(this object[] eggs)
+        {
+            string print;
+            return print = ($"{eggs.Length} eggs");
+
+        }
     }
 }

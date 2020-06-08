@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Util.Extensions
 {
-    class ObjectExtensions
+   public static class ObjectExtensions
     {
         /// <summary>
         /// Generate Objeect with Parameter {= Generateobject<T>(new object[] { ... } }
@@ -17,7 +17,7 @@ namespace Util.Extensions
             return (T)Activator.CreateInstance(typeof(T), param);
         }
         /// <summary>
-        /// Generate Object without Parameter
+        /// Generate Object without Parameter {.NewObject<T>();}
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
