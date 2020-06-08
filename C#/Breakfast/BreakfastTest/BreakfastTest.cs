@@ -48,7 +48,8 @@ namespace BreakfastTest
             var bacon = Breakfast.Breakfast.FryBacon(3);
             Assert.Equal(3, bacon.Length);
             Breakfast.Breakfast.EatBacon(ref bacon, 2);
-            Assert.Equal(1, bacon.Length);
+            Assert.Single(bacon);
+            //Assert.Equal(1, bacon.Length);
         }
 
         [Fact]

@@ -15,10 +15,7 @@ namespace Breakfast
             set { temperature = value; }
         }
 
-       /* public Coffee(string temperaturee)
-        {
-            temperature = temperaturee;
-        }*/
+       
 
         public  string TemperatureOfCoffe(string value)
         {
