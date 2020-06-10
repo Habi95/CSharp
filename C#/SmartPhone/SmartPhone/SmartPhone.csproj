@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
+    <Compile Include="AppTypEnum.cs" />
     <Compile Include="SmartAppListForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -103,6 +104,14 @@
     <ProjectReference Include="..\..\WoerterBuch\WoerterBuch\WoerterBuch.csproj">
       <Project>{180ab652-2559-4096-af19-e28775dd1a12}</Project>
       <Name>WoerterBuch</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataModels\DataModels.csproj">
+      <Project>{5f2e3f4c-0bbb-4cbf-b7ed-d756660d93db}</Project>
+      <Name>DataModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SmartPhoneController\SmartPhoneController.csproj">
+      <Project>{8d22d700-b7d6-4b4b-8873-4e44a2275cd4}</Project>
+      <Name>SmartPhoneController</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

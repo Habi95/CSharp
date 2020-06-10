@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataModels;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,10 +15,13 @@ namespace Einkaufswagen
     public partial class Form1 : Form
     {
         Dictionary<string, int> shoppingDict = new Dictionary<string, int>();
+        
+
         public Form1()
         {
             InitializeComponent();
-        }
+        } 
+
 
         private void UpdateShopping()
         {
@@ -28,8 +32,6 @@ namespace Einkaufswagen
             //{
             //    listBoxShoppingList.Items.Add($"{item.ToString()} ( {shoppingDict[item]} )");
             //}
-
-
 
 
         }

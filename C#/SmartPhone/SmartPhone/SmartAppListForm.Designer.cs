@@ -32,6 +32,9 @@
             this.listBoxApp = new System.Windows.Forms.ListBox();
             this.labelTimeMenu = new System.Windows.Forms.Label();
             this.timer = new System.Windows.Forms.Timer(this.components);
+            this.buttonShowAll = new System.Windows.Forms.Button();
+            this.comboBoxApps = new System.Windows.Forms.ComboBox();
+            this.Startbtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listBoxApp
@@ -58,12 +61,44 @@
             this.timer.Interval = 1000;
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
+            // buttonShowAll
+            // 
+            this.buttonShowAll.Location = new System.Drawing.Point(187, 319);
+            this.buttonShowAll.Name = "buttonShowAll";
+            this.buttonShowAll.Size = new System.Drawing.Size(75, 23);
+            this.buttonShowAll.TabIndex = 3;
+            this.buttonShowAll.Text = "Alle Anzeigen";
+            this.buttonShowAll.UseVisualStyleBackColor = true;
+            this.buttonShowAll.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // comboBoxApps
+            // 
+            this.comboBoxApps.FormattingEnabled = true;
+            this.comboBoxApps.Location = new System.Drawing.Point(68, 75);
+            this.comboBoxApps.Name = "comboBoxApps";
+            this.comboBoxApps.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxApps.TabIndex = 4;
+            this.comboBoxApps.SelectedIndexChanged += new System.EventHandler(this.comboBoxApps_SelectedIndexChanged);
+            // 
+            // Startbtn
+            // 
+            this.Startbtn.Location = new System.Drawing.Point(68, 318);
+            this.Startbtn.Name = "Startbtn";
+            this.Startbtn.Size = new System.Drawing.Size(75, 23);
+            this.Startbtn.TabIndex = 5;
+            this.Startbtn.Text = "Start";
+            this.Startbtn.UseVisualStyleBackColor = true;
+            this.Startbtn.Click += new System.EventHandler(this.Startbtn_Click);
+            // 
             // SmartAppListForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(353, 744);
+            this.Controls.Add(this.Startbtn);
+            this.Controls.Add(this.comboBoxApps);
+            this.Controls.Add(this.buttonShowAll);
             this.Controls.Add(this.labelTimeMenu);
             this.Controls.Add(this.listBoxApp);
             this.Name = "SmartAppListForm";
@@ -78,5 +113,8 @@
         private System.Windows.Forms.ListBox listBoxApp;
         private System.Windows.Forms.Label labelTimeMenu;
         private System.Windows.Forms.Timer timer;
+        private System.Windows.Forms.Button buttonShowAll;
+        private System.Windows.Forms.ComboBox comboBoxApps;
+        private System.Windows.Forms.Button Startbtn;
     }
 }

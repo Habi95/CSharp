@@ -7,23 +7,38 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DataModels;
 
 namespace SmartPhone
 {
     public partial class SmartPhoneForm : Form
     {
-        SmartAppListForm smartAppListForm = new SmartAppListForm();
+
+        SmartPhoneController.Controller smartController;
+        SmartAppListForm smartAppListForm; 
+        
+        
         public SmartPhoneForm()
         {
             InitializeComponent();
+            smartController = new SmartPhoneController.Controller(new DataModels.SmartPhone("Samsung s10+", "Blue Metallic"));
+            smartController.loadAppList();
+            smartAppListForm = new SmartAppListForm(smartController);
             timer1.Start();
-            smartAppListForm.Hide();
+            
+            
+        }
+       
+        public void UpdateListBox()
+        {
 
 
         }
 
         private void GoToListBtn_Click(object sender, EventArgs e)
-        {            
+        {
+
+            smartAppListForm.StartPosition = FormStartPosition.CenterScreen;
             smartAppListForm.Show();
             this.Hide();
         }
