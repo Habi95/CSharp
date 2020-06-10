@@ -80,5 +80,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Woerterbuchlogic\Woerterbuchlogic.csproj">
+      <Project>{98dc4834-48b4-4d41-82c0-08f00ed83bb3}</Project>
+      <Name>Woerterbuchlogic</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

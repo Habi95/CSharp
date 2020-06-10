@@ -4,20 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WoerterBuch
+namespace Woerterbuchlogic
 {
-    class Alphabet
+    public class Alphabet
     {
-        private List<string> alphabetList = new List<string>();
+        private List<string> alphabetList  = new List<string>();
         public List<string> AlphabetList
         {
             get
             {
                 return alphabetList;
-            }
+            } 
         }
 
-
+      
         public void fillAlphabetList()
         {
             alphabetList.Add("A");

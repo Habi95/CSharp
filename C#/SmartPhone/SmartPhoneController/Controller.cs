@@ -49,6 +49,7 @@ namespace SmartPhoneController
 
         public List<string> showComboBox()
         { 
+
             return output = mySmartPhone.AppList.Select(x => $"{x.Typ}").Take(3).ToList();
         }
 

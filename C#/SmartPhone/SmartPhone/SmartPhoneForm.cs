@@ -27,14 +27,8 @@ namespace SmartPhone
             timer1.Start();
             
             
-        }
-       
-        public void UpdateListBox()
-        {
-
-
-        }
-
+        }       
+    
         private void GoToListBtn_Click(object sender, EventArgs e)
         {
 
