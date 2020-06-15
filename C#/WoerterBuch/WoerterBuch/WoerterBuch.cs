@@ -99,6 +99,9 @@ namespace WoerterBuch
             listBoxAlphabet.DataSource = controller.GetAlphabet();
         }
 
-
+        private void SaveBtn_Click(object sender, EventArgs e)
+        {
+            controller.InsertAllWord();//InsertGermanWord(lbGermanWords.SelectedItem as string);
+        }
     }
 }

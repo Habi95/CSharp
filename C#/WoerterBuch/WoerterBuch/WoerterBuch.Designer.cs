@@ -44,13 +44,15 @@
             this.buttonImportCsv = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.labelGerman = new System.Windows.Forms.Label();
+            this.SaveBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnHinzufügen
             // 
-            this.btnHinzufügen.Location = new System.Drawing.Point(247, 51);
+            this.btnHinzufügen.Location = new System.Drawing.Point(329, 63);
+            this.btnHinzufügen.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnHinzufügen.Name = "btnHinzufügen";
-            this.btnHinzufügen.Size = new System.Drawing.Size(75, 23);
+            this.btnHinzufügen.Size = new System.Drawing.Size(100, 28);
             this.btnHinzufügen.TabIndex = 0;
             this.btnHinzufügen.Text = "Hinzufügen";
             this.btnHinzufügen.UseVisualStyleBackColor = true;
@@ -59,41 +61,46 @@
             // labelTranslation
             // 
             this.labelTranslation.AutoSize = true;
-            this.labelTranslation.Location = new System.Drawing.Point(435, 51);
+            this.labelTranslation.Location = new System.Drawing.Point(580, 63);
+            this.labelTranslation.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelTranslation.Name = "labelTranslation";
-            this.labelTranslation.Size = new System.Drawing.Size(85, 13);
+            this.labelTranslation.Size = new System.Drawing.Size(109, 16);
             this.labelTranslation.TabIndex = 1;
             this.labelTranslation.Text = "English provided";
             // 
             // tbGermanWord
             // 
-            this.tbGermanWord.Location = new System.Drawing.Point(26, 80);
+            this.tbGermanWord.Location = new System.Drawing.Point(35, 98);
+            this.tbGermanWord.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbGermanWord.Name = "tbGermanWord";
-            this.tbGermanWord.Size = new System.Drawing.Size(147, 20);
+            this.tbGermanWord.Size = new System.Drawing.Size(195, 22);
             this.tbGermanWord.TabIndex = 2;
             // 
             // tbEnglishWord
             // 
-            this.tbEnglishWord.Location = new System.Drawing.Point(386, 80);
+            this.tbEnglishWord.Location = new System.Drawing.Point(515, 98);
+            this.tbEnglishWord.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbEnglishWord.Name = "tbEnglishWord";
-            this.tbEnglishWord.Size = new System.Drawing.Size(183, 20);
+            this.tbEnglishWord.Size = new System.Drawing.Size(243, 22);
             this.tbEnglishWord.TabIndex = 3;
             // 
             // lbGermanWords
             // 
             this.lbGermanWords.FormattingEnabled = true;
-            this.lbGermanWords.Location = new System.Drawing.Point(261, 182);
+            this.lbGermanWords.ItemHeight = 16;
+            this.lbGermanWords.Location = new System.Drawing.Point(348, 224);
+            this.lbGermanWords.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lbGermanWords.Name = "lbGermanWords";
-            this.lbGermanWords.Size = new System.Drawing.Size(120, 199);
+            this.lbGermanWords.Size = new System.Drawing.Size(159, 244);
             this.lbGermanWords.TabIndex = 4;
             this.lbGermanWords.SelectedIndexChanged += new System.EventHandler(this.lbGermanWords_SelectedIndexChanged);
             // 
             // btnExportCSV
             // 
-            this.btnExportCSV.Location = new System.Drawing.Point(249, 80);
-            this.btnExportCSV.Margin = new System.Windows.Forms.Padding(2);
+            this.btnExportCSV.Location = new System.Drawing.Point(332, 98);
+            this.btnExportCSV.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnExportCSV.Name = "btnExportCSV";
-            this.btnExportCSV.Size = new System.Drawing.Size(75, 24);
+            this.btnExportCSV.Size = new System.Drawing.Size(100, 30);
             this.btnExportCSV.TabIndex = 6;
             this.btnExportCSV.Text = "Export CSV";
             this.btnExportCSV.UseVisualStyleBackColor = true;
@@ -101,10 +108,10 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(28, 206);
-            this.btnSearch.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSearch.Location = new System.Drawing.Point(37, 254);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(145, 27);
+            this.btnSearch.Size = new System.Drawing.Size(193, 33);
             this.btnSearch.TabIndex = 9;
             this.btnSearch.Text = "Suchen";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -112,61 +119,69 @@
             // 
             // textBoxSearch
             // 
-            this.textBoxSearch.Location = new System.Drawing.Point(28, 182);
-            this.textBoxSearch.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxSearch.Location = new System.Drawing.Point(37, 224);
+            this.textBoxSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxSearch.Name = "textBoxSearch";
-            this.textBoxSearch.Size = new System.Drawing.Size(145, 20);
+            this.textBoxSearch.Size = new System.Drawing.Size(192, 22);
             this.textBoxSearch.TabIndex = 10;
             // 
             // labelSearch
             // 
             this.labelSearch.AutoSize = true;
-            this.labelSearch.Location = new System.Drawing.Point(73, 154);
+            this.labelSearch.Location = new System.Drawing.Point(97, 190);
+            this.labelSearch.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelSearch.Name = "labelSearch";
-            this.labelSearch.Size = new System.Drawing.Size(38, 13);
+            this.labelSearch.Size = new System.Drawing.Size(46, 16);
             this.labelSearch.TabIndex = 11;
             this.labelSearch.Text = "Suche";
             // 
             // listBoxAlphabet
             // 
             this.listBoxAlphabet.FormattingEnabled = true;
-            this.listBoxAlphabet.Location = new System.Drawing.Point(224, 182);
+            this.listBoxAlphabet.ItemHeight = 16;
+            this.listBoxAlphabet.Location = new System.Drawing.Point(299, 224);
+            this.listBoxAlphabet.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.listBoxAlphabet.Name = "listBoxAlphabet";
-            this.listBoxAlphabet.Size = new System.Drawing.Size(40, 199);
+            this.listBoxAlphabet.Size = new System.Drawing.Size(52, 244);
             this.listBoxAlphabet.TabIndex = 12;
             this.listBoxAlphabet.SelectedIndexChanged += new System.EventHandler(this.listBoxAlphabet_SelectedIndexChanged);
             // 
             // labelEngAusgabe
             // 
             this.labelEngAusgabe.AutoSize = true;
-            this.labelEngAusgabe.Location = new System.Drawing.Point(459, 154);
+            this.labelEngAusgabe.Location = new System.Drawing.Point(612, 190);
+            this.labelEngAusgabe.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelEngAusgabe.Name = "labelEngAusgabe";
-            this.labelEngAusgabe.Size = new System.Drawing.Size(98, 13);
+            this.labelEngAusgabe.Size = new System.Drawing.Size(125, 16);
             this.labelEngAusgabe.TabIndex = 13;
             this.labelEngAusgabe.Text = "Englische Ausgabe";
             // 
             // listBoxTranslation
             // 
             this.listBoxTranslation.FormattingEnabled = true;
-            this.listBoxTranslation.Location = new System.Drawing.Point(428, 182);
+            this.listBoxTranslation.ItemHeight = 16;
+            this.listBoxTranslation.Location = new System.Drawing.Point(571, 224);
+            this.listBoxTranslation.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.listBoxTranslation.Name = "listBoxTranslation";
-            this.listBoxTranslation.Size = new System.Drawing.Size(141, 199);
+            this.listBoxTranslation.Size = new System.Drawing.Size(187, 244);
             this.listBoxTranslation.TabIndex = 14;
             // 
             // labelGerAusgabe
             // 
             this.labelGerAusgabe.AutoSize = true;
-            this.labelGerAusgabe.Location = new System.Drawing.Point(246, 154);
+            this.labelGerAusgabe.Location = new System.Drawing.Point(328, 190);
+            this.labelGerAusgabe.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelGerAusgabe.Name = "labelGerAusgabe";
-            this.labelGerAusgabe.Size = new System.Drawing.Size(98, 13);
+            this.labelGerAusgabe.Size = new System.Drawing.Size(123, 16);
             this.labelGerAusgabe.TabIndex = 15;
             this.labelGerAusgabe.Text = "Deutsche Ausgabe";
             // 
             // buttonImportCsv
             // 
-            this.buttonImportCsv.Location = new System.Drawing.Point(249, 109);
+            this.buttonImportCsv.Location = new System.Drawing.Point(332, 134);
+            this.buttonImportCsv.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonImportCsv.Name = "buttonImportCsv";
-            this.buttonImportCsv.Size = new System.Drawing.Size(73, 26);
+            this.buttonImportCsv.Size = new System.Drawing.Size(97, 32);
             this.buttonImportCsv.TabIndex = 16;
             this.buttonImportCsv.Text = "Import CSV";
             this.buttonImportCsv.UseVisualStyleBackColor = true;
@@ -174,9 +189,10 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(28, 238);
+            this.button1.Location = new System.Drawing.Point(37, 293);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(145, 25);
+            this.button1.Size = new System.Drawing.Size(193, 31);
             this.button1.TabIndex = 17;
             this.button1.Text = "Alle Anzeigen";
             this.button1.UseVisualStyleBackColor = true;
@@ -185,17 +201,29 @@
             // labelGerman
             // 
             this.labelGerman.AutoSize = true;
-            this.labelGerman.Location = new System.Drawing.Point(51, 51);
+            this.labelGerman.Location = new System.Drawing.Point(68, 63);
+            this.labelGerman.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelGerman.Name = "labelGerman";
-            this.labelGerman.Size = new System.Drawing.Size(94, 13);
+            this.labelGerman.Size = new System.Drawing.Size(117, 16);
             this.labelGerman.TabIndex = 18;
             this.labelGerman.Text = "Deutsch eingeben";
             // 
+            // SaveBtn
+            // 
+            this.SaveBtn.Location = new System.Drawing.Point(37, 331);
+            this.SaveBtn.Name = "SaveBtn";
+            this.SaveBtn.Size = new System.Drawing.Size(192, 27);
+            this.SaveBtn.TabIndex = 19;
+            this.SaveBtn.Text = "Save";
+            this.SaveBtn.UseVisualStyleBackColor = true;
+            this.SaveBtn.Click += new System.EventHandler(this.SaveBtn_Click);
+            // 
             // BackGround
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(600, 393);
+            this.ClientSize = new System.Drawing.Size(800, 484);
+            this.Controls.Add(this.SaveBtn);
             this.Controls.Add(this.labelGerman);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.buttonImportCsv);
@@ -212,7 +240,7 @@
             this.Controls.Add(this.tbGermanWord);
             this.Controls.Add(this.labelTranslation);
             this.Controls.Add(this.btnHinzufügen);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "BackGround";
             this.Text = "WörterBuch";
             this.ResumeLayout(false);
@@ -238,6 +266,7 @@
         private System.Windows.Forms.Button buttonImportCsv;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label labelGerman;
+        private System.Windows.Forms.Button SaveBtn;
     }
 }
 

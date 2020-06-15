@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using WoerterBuchData;
+using WoerterBuchData.model;
 
 namespace Woerterbuchlogic
 {
@@ -16,11 +18,15 @@ namespace Woerterbuchlogic
         private Dictionary<string, List<string>> germanToEnglishDict = new Dictionary<string, List<string>>();
         List<string> englishwordLists;
         Alphabet myAlphabet = new Alphabet();
+        //public string url = "Server=localhost; database=woerterbuch;UID=root";
+        WoerterBuchData.DataBaseSql DBSQL = new WoerterBuchData.DataBaseSql("Server=localhost; database=woerterbuch;UID=root");
+        Word myWord;
         public WoerterbuchController(string path)
         {
             this.path = path;
             myAlphabet.fillAlphabetList();
         }
+
 
 
 
@@ -117,14 +123,74 @@ namespace Woerterbuchlogic
             }
             return list;
         }
-        public List<string> FindPerKey (string filterString)
-        {
-            
-            return  germanToEnglishDict.
+        public List<string> FindPerKey(string filterString)
+        {          
+            return germanToEnglishDict.
                        Where(x =>
                            x.Key.Contains(filterString))
                              .SelectMany(x => x.Value).ToList();
         }
+
+        public void InsertGermanWord(string Gword)
+        {
+            
+            var insertMapper = new InsertMapper();
+            insertMapper.Table = "word";
+            insertMapper.ColumnValueDict.Add("word", Gword);
+            insertMapper.ColumnValueDict.Add("national_code", NationalCode.DE.ToString());
+            DBSQL.InserWord(insertMapper);
+            myWord = DBSQL.getID(Gword);
+            CheckOtherLang();
+
+        }
+
+        public void InsertAllWord ()
+        {
+            List<string> list = new List<string>();
+            foreach (var item in myAlphabet.AlphabetList)
+            {
+                 var list1 =  FindResults(item, true);
+                foreach (var item1 in list1)
+                {
+                    list.Add(item1);
+                }
+            }
+            foreach (var word in list)
+            {
+                InsertGermanWord(word);
+            }
+            
+
+        }
+        public void CheckOtherLang()
+        {
+            if (germanToEnglishDict.ContainsKey(this.myWord.WordName))
+            {
+                List<string> list = FindPerKey(this.myWord.WordName);
+                InsertEnglishWord(list);
+            }
+        }
+
+        public void InsertEnglishWord(List<string> eList)
+        {
+            foreach (var item in eList)
+            {
+                var insertMapper = new InsertMapper();
+                insertMapper.Table = "word";
+                insertMapper.ColumnValueDict.Add("word", item);
+                insertMapper.ColumnValueDict.Add("national_code", NationalCode.ENG.ToString());
+                DBSQL.InserWord(insertMapper);
+                Word Otherword = DBSQL.getID(item);
+                var insertMappe = new InsertMapper();      
+                insertMappe.Table = "dictword";
+                insertMappe.ColumnValueDict.Add("word1_id", this.myWord.Id.ToString());
+                insertMappe.ColumnValueDict.Add("word2_id", Otherword.Id.ToString());
+                DBSQL.InserWord(insertMappe);               
+            }
+
+
+        }
+
 
         /// <summary>
         /// returns the alphabet for the filtering
