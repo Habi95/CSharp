@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.IO;
@@ -14,21 +15,41 @@ namespace WoerterBuch
 {
     public partial class BackGround : Form
     {
-        Woerterbuchlogic.WoerterbuchController controller = new Woerterbuchlogic.WoerterbuchController("C:\\Users\\DCV\\Desktop\\HelloWorld\\Spezialtrack-C-\\C#\\WörterBuch.csv");
-        Dictionary<string, List<string>> germanToEnglishDict = new Dictionary<string, List<string>>();
-        List<string> englishwordLists;
+        //C:\\Users\\DCV\\Desktop\\HelloWorld\\Spezialtrack-C-\\C#\\WörterBuch.csv
+        Woerterbuchlogic.WoerterbuchController controller;
+        Dictionary<string, List<string>> KeyValueWordDict = new Dictionary<string, List<string>>();
         bool hasToStartsWith = false;
+
 
         public BackGround()
         {
-            InitializeComponent();            
-            controller.ReadDictionary();
-            UpdateTranslation();
+            InitializeComponent();
+            var url = ConfigurationManager.AppSettings.Get("DB_URL");
+            var path = ConfigurationManager.AppSettings.Get("LocalPath");
+            controller = new Woerterbuchlogic.WoerterbuchController(url, path);
+            var languages = ConfigurationManager.AppSettings.Get("Languages");
+            var langArray = languages.Split(';');
+            fillCombo(langArray);
             UpdateAlphabet();
+            KeyValueWordDict = controller.ImportchoicedLang(langArray[0], langArray[1]);
+            UpdateTranslation();
+
         }
 
 
+        public void fillCombo(Array language)
+        {
+            /* comboBoxLang1.Items.Add(language.GetValue(0));
+             comboBoxLang2.Items.Add(language.GetValue(1));
+             comboBoxLang2.Items.Add(language.GetValue(2));*/
 
+            foreach (var item in language)
+            {
+                comboBoxLang1.Items.Add(item);
+                comboBoxLang2.Items.Add(item);
+
+            }
+        }
 
         private void btnHinzufügen_Click(object sender, EventArgs e)
         {
@@ -40,6 +61,8 @@ namespace WoerterBuch
                 if (!controller.AddItem(germanWord, englishWord))
                 {
                     UpdateTranslation();
+                    tbGermanWord.Clear();
+                    tbEnglishWord.Clear();
                 }
                 else
                 {
@@ -55,15 +78,23 @@ namespace WoerterBuch
         }
         private void lbGermanWords_SelectedIndexChanged(object sender, EventArgs e)
         {
-            hasToStartsWith = false;          
+            hasToStartsWith = false;
             listBoxTranslation.DataSource = controller.FindPerKey(lbGermanWords.SelectedItem as string);
+            textBoxDelete.Text = lbGermanWords.SelectedItem as string;
+            textBoxUpdate.Text = lbGermanWords.SelectedItem as string;
+
+        }
+        private void listBoxTranslation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            textBoxDelete.Text = listBoxTranslation.SelectedItem as string;
+            textBoxUpdate.Text = listBoxTranslation.SelectedItem as string;
         }
 
 
         private void listBoxAlphabet_SelectedIndexChanged(object sender, EventArgs e)
         {
             hasToStartsWith = true;
-            lbGermanWords.DataSource = controller.FindResults(listBoxAlphabet.Text, hasToStartsWith);          
+            lbGermanWords.DataSource = controller.FindResults(listBoxAlphabet.Text, hasToStartsWith);
 
         }
         private void btnExportCSV_Click(object sender, EventArgs e)
@@ -72,7 +103,8 @@ namespace WoerterBuch
         }
         private void buttonImportCsv_Click(object sender, EventArgs e)
         {
-            controller.ReadDictionary();
+            KeyValueWordDict = controller.ReadDictionary();
+            UpdateTranslation();
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -80,6 +112,7 @@ namespace WoerterBuch
             hasToStartsWith = false;
             listBoxTranslation.DataSource = controller.FindPerKey(textBoxSearch.Text);
             lbGermanWords.DataSource = controller.FindResults(textBoxSearch.Text, hasToStartsWith);
+            textBoxSearch.Clear();
 
         }
         private void button1_Click(object sender, EventArgs e)
@@ -92,7 +125,7 @@ namespace WoerterBuch
 
         private void UpdateTranslation()
         {
-            lbGermanWords.DataSource = germanToEnglishDict.Keys.OrderBy(myWord => myWord).ToList();
+            lbGermanWords.DataSource = KeyValueWordDict.Keys.OrderBy(myWord => myWord).ToList();
         }
         private void UpdateAlphabet()
         {
@@ -101,7 +134,72 @@ namespace WoerterBuch
 
         private void SaveBtn_Click(object sender, EventArgs e)
         {
-            controller.InsertAllWord();//InsertGermanWord(lbGermanWords.SelectedItem as string);
+            controller.InsertAllWord(textBoxOutput1.Text, textBoxOutput2.Text);//InsertGermanWord(lbGermanWords.SelectedItem as string);
         }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            textBoxOutput1.Text = comboBoxLang1.SelectedItem as string;
+
+        }
+
+        private void comboBoxLang2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            textBoxOutput2.Text = comboBoxLang2.SelectedItem as string;
+        }
+
+        private void buttonImportDB_Click(object sender, EventArgs e)
+        {
+            string lang1 = comboBoxLang1.SelectedItem as string;
+            string lang2 = comboBoxLang2.SelectedItem as string;
+            if (!string.IsNullOrEmpty(lang1) && !string.IsNullOrEmpty(lang2))
+            {
+                KeyValueWordDict = controller.ImportchoicedLang(lang1, lang2);
+                if (KeyValueWordDict.Count == 0)
+                {
+                    MessageBox.Show("Choice Right Language - DE / ENG,ITA");
+                }
+                else
+                {
+                    UpdateTranslation();
+                    MessageBox.Show("Status OK");
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Choiced Languages is Empty");
+            }
+
+        }
+
+
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+            if (controller.DeleteWord(textBoxDelete.Text))
+            {
+                MessageBox.Show("Successful Deleted");
+            }
+            else
+            {
+                MessageBox.Show("Something go Wrong");
+            }
+
+        }
+
+        private void buttonUpdate_Click(object sender, EventArgs e)
+        {
+            if (controller.UpdateWord(lbGermanWords.SelectedItem as string, textBoxUpdate.Text))
+            {
+                MessageBox.Show("Successful Updated");
+            }
+            else
+            {
+                MessageBox.Show("Something go Wrong");
+            }
+
+        }
+
+
     }
 }

@@ -126,9 +126,15 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Datamodels\Datamodels.csproj">
+      <Project>{31383daf-9a4e-4197-a6ce-cf89d7d729e5}</Project>
+      <Name>Datamodels</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Woerterbuchlogic\Woerterbuchlogic.csproj">
       <Project>{98dc4834-48b4-4d41-82c0-08f00ed83bb3}</Project>
       <Name>Woerterbuchlogic</Name>

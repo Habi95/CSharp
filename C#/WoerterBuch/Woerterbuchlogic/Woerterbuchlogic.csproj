@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Datamodels\Datamodels.csproj" />
     <ProjectReference Include="..\WoerterBuchData\WoerterBuchData.csproj" />
   </ItemGroup>
 
