@@ -65,6 +65,7 @@ namespace WoerterBuch
                     UpdateTranslation();
                     tbGermanWord.Clear();
                     tbEnglishWord.Clear();
+                    MessageBox.Show("Added");
                 }
                 else
                 {
@@ -107,6 +108,7 @@ namespace WoerterBuch
         {
             KeyValueWordDict = controller.ReadDictionary();
             UpdateTranslation();
+            MessageBox.Show("Updated");
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
