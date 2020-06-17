@@ -177,10 +177,10 @@ namespace Woerterbuchlogic
                 List<string> tempList = new List<string>() { valueWord };
                 InsertValueWord(tempList, lang2);
             }
-            else
+            else 
             {
-
-                List<string> list = new List<string>();
+                InsertKeyWord(keyWord, lang1, lang2);
+                /*List<string> list = new List<string>();
                 foreach (var item in myAlphabet.AlphabetList)
                 {
                     var list1 = FindResults(item, true);
@@ -201,7 +201,7 @@ namespace Woerterbuchlogic
                     }
 
 
-                }
+                }*/
             }
 
         }

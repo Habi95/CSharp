@@ -136,10 +136,7 @@ namespace WoerterBuch
             listBoxAlphabet.DataSource = controller.GetAlphabet();
         }
 
-        private void SaveBtn_Click(object sender, EventArgs e)
-        {
-            controller.InsertAllWord(textBoxOutput1.Text, textBoxOutput2.Text);//InsertGermanWord(lbGermanWords.SelectedItem as string);
-        }
+                
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -161,7 +158,7 @@ namespace WoerterBuch
                 KeyValueWordDict = controller.ImportchoicedLang(lang1, lang2);
                 if (KeyValueWordDict.Count == 0)
                 {
-                    MessageBox.Show("Choice Right Language - DE / ENG,ITA");
+                    MessageBox.Show("Choice Right Language \nDE / ENG,ITA \nENG / DE\nITA / DE");
                 }
                 else
                 {
@@ -204,6 +201,6 @@ namespace WoerterBuch
 
         }
 
-
+       
     }
 }

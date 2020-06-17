@@ -9,7 +9,7 @@ namespace WoerterBuchData
     public class DataBaseSql
     {
         private string url;
-        public string URL 
+        public string URL
         {
             get
             {
@@ -25,12 +25,12 @@ namespace WoerterBuchData
         {
             URL = uRL;
         }
-        /*public MySqlConnection myCon ()
+        public MySqlConnection myCon ()
         {
             var connection = new MySqlConnection(URL);
             connection.Open();
             return connection;
-        }*/
+        }
         public void InserWord(InsertMapper insertMapper)
         {
 
@@ -62,36 +62,73 @@ namespace WoerterBuchData
             Dictionary<string, List<string>> lang = new Dictionary<string, List<string>>();
             try
             {
- MySqlConnection connection = new MySqlConnection(URL);
-            MySqlCommand command = connection.CreateCommand();
-            command.CommandText = $"SELECT {lang1}.word , {lang2}.word FROM `dictword`" +
-                                  $" INNER JOIN word as {lang1} ON {lang1}.id = dictword.word1_id" +
-                                  $" INNER JOIN word as {lang2} ON {lang2}.id = dictword.word2_id" +
-                                  $" WHERE {lang1}.national_code = '{lang1}' && {lang2}.national_code = '{lang2}'";
-            MySqlDataReader dataReader;
-            connection.Open();
-            dataReader = command.ExecuteReader();
+                //MySqlConnection connection = new MySqlConnection(URL);
+                MySqlCommand command = myCon().CreateCommand();
 
-            while (dataReader.Read())
-            {
-                if (!lang.ContainsKey(dataReader[0].ToString()))
+                command.CommandText = $"SELECT {lang1}.word , {lang2}.word FROM `dictword`" +
+                                      $" INNER JOIN word as {lang1} ON {lang1}.id = dictword.word1_id" +
+                                      $" INNER JOIN word as {lang2} ON {lang2}.id = dictword.word2_id" +
+                                      $" WHERE {lang1}.national_code = '{lang1}' && {lang2}.national_code = '{lang2}'";
+                MySqlDataReader dataReader;
+                //connection.Open();
+                dataReader = command.ExecuteReader();
+                using (dataReader)
                 {
-                    List<string> list = new List<string>();
-                    lang.Add(dataReader[0].ToString(), list);
-                    lang[dataReader[0].ToString()].Add(dataReader[1].ToString());
+                
+
+                while (dataReader.Read())
+                {
+                    if (!lang.ContainsKey(dataReader[0].ToString()))
+                    {
+                        List<string> list = new List<string>();
+                        lang.Add(dataReader[0].ToString(), list);
+                        lang[dataReader[0].ToString()].Add(dataReader[1].ToString());
+                    }
+                    else if (lang.ContainsKey(dataReader[0].ToString()))
+                    {
+                        lang[dataReader[0].ToString()].Add(dataReader[1].ToString());
+                    }
                 }
-                else if (lang.ContainsKey(dataReader[0].ToString()))
+                }
+                if (lang.Count == 0)
                 {
-                    lang[dataReader[0].ToString()].Add(dataReader[1].ToString());
-                }    
-            }
+
+                    //MySqlConnection connection = new MySqlConnection(URL);
+                    MySqlCommand command1 = myCon().CreateCommand();
+                    command.CommandText = $"SELECT {lang1}.word , {lang2}.word FROM `dictword`" +
+                                          $" INNER JOIN word as {lang1} ON {lang1}.id = dictword.word2_id" +
+                                          $" INNER JOIN word as {lang2} ON {lang2}.id = dictword.word1_id" +
+                                          $" WHERE {lang1}.national_code = '{lang1}' && {lang2}.national_code = '{lang2}'";
+                   MySqlDataReader dataReader1;
+                    //connection.Open();
+                    dataReader1 = command.ExecuteReader();
+                    using (dataReader1)
+                    {
+
+
+                        while (dataReader1.Read())
+                        {
+                            if (!lang.ContainsKey(dataReader1[0].ToString()))
+                            {
+                                List<string> list = new List<string>();
+                                lang.Add(dataReader1[0].ToString(), list);
+                                lang[dataReader1[0].ToString()].Add(dataReader1[1].ToString());
+                            }
+                            else if (lang.ContainsKey(dataReader1[0].ToString()))
+                            {
+                                lang[dataReader1[0].ToString()].Add(dataReader1[1].ToString());
+                            }
+                        }
+                    }
+                }
+                
             }
             catch (Exception)
             {
-                List<string> list = new List<string>() {"DE / ENG,ITA"};
+                List<string> list = new List<string>() { "DE / ENG,ITA" };
                 lang.Add("Choice Right Language", list);
             }
-           
+
             return lang;
         }
 
@@ -125,27 +162,67 @@ namespace WoerterBuchData
 
         }
 
-        public bool DeleteWord (string toDelete)
+        public bool DeleteWord(string toDelete)
         {
+            /*SELECT onee.id , two.id FROM `dictword`  
+INNER JOIN word as onee ON onee.id = word1_id
+INNER JOIN word as two On two.id = word2_id
+WHERE onee.word = 'Wichtig'*/
             bool isDeleted = false;
             try
             {
-            MySqlConnection connection = new MySqlConnection(URL);
-            MySqlCommand command = connection.CreateCommand();
-            command.CommandText = $"DELETE FROM `word` WHERE word = {toDelete}";
-            connection.Open();
-            command.ExecuteNonQuery();
+                MySqlConnection connection = new MySqlConnection(URL);
+                MySqlCommand command = connection.CreateCommand();
+                command.CommandText = $"SELECT onee.id , two.id FROM `dictword`" +
+                $" INNER JOIN word as onee ON onee.id = word1_id" +
+                $" INNER JOIN word as two On two.id = word2_id" +
+                $" WHERE onee.word = '{toDelete}'";
+                MySqlDataReader dataReader;
+                connection.Open();
+                List<int> idList = new List<int>();
+
+                using (dataReader = command.ExecuteReader())
+                {
+                    
+                    while (dataReader.Read())
+                    {
+                        var id1 = Util.Extensions.StringExtension.ConvertType<int>(dataReader[0].ToString());
+                        if (id1.HasValue)
+                        {
+                            if (idList.Contains(id1.Value))
+                            {
+                                var id = Util.Extensions.StringExtension.ConvertType<int>(dataReader[1].ToString());
+                                idList.Add(id.Value);
+                            }
+                            else
+                            {
+                                var id2 = Util.Extensions.StringExtension.ConvertType<int>(dataReader[1].ToString());
+                                idList.Add(id1.Value);
+                                idList.Add(id2.Value);
+                            }
+                        }
+                    }
+                }
+                string sqlQuery = string.Empty;
+                foreach (var item in idList)
+                {
+                    sqlQuery += string.IsNullOrEmpty(sqlQuery) ? $"DELETE FROM `word` WHERE id = {item}" : $"; DELETE FROM `word` WHERE id = {item} ";
+                }
+
+
+                command.CommandText = sqlQuery;
+                command.ExecuteNonQuery();
                 isDeleted = true;
             }
             catch (MySqlException ex)
             {
-                Console.WriteLine(ex.Message);              
-                
+                Console.WriteLine(ex.Message);
+
             }
             return isDeleted;
-           
+
         }
-        public bool UpdateWord(string word,string toUpdate)
+        public bool UpdateWord(string word, string toUpdate)
         {
             bool isDeleted = false;
             try

@@ -227,8 +227,7 @@
             this.SaveBtn.Size = new System.Drawing.Size(192, 27);
             this.SaveBtn.TabIndex = 19;
             this.SaveBtn.Text = "Save All";
-            this.SaveBtn.UseVisualStyleBackColor = true;
-            this.SaveBtn.Click += new System.EventHandler(this.SaveBtn_Click);
+            this.SaveBtn.UseVisualStyleBackColor = true;            
             // 
             // comboBoxLang1
             // 
