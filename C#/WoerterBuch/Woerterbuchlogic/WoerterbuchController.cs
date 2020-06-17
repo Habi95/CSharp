@@ -15,6 +15,10 @@ namespace Woerterbuchlogic
 
         private string Url;
 
+        private string keyWord;
+        private string valueWord;
+        private bool IsAdded = false;
+
 
         //"Server=localhost; database=woerterbuch;UID=root"
         /// <summary>
@@ -22,7 +26,7 @@ namespace Woerterbuchlogic
         /// </summary>
         /// 
         private Dictionary<string, List<string>> KeyValueWordDict = new Dictionary<string, List<string>>();
-        
+
         List<string> valueWordLists;
         Alphabet myAlphabet = new Alphabet();
         //public string url = "Server=localhost; database=woerterbuch;UID=root";
@@ -33,7 +37,7 @@ namespace Woerterbuchlogic
             this.path = path;
             this.Url = url;
             this.DBSQL = new WoerterBuchData.DataBaseSql(Url);
-            myAlphabet.fillAlphabetList();            
+            myAlphabet.fillAlphabetList();
         }
 
         /// <summary>
@@ -69,23 +73,29 @@ namespace Woerterbuchlogic
             return KeyValueWordDict;
         }
 
-        public bool AddItem(string germanWord, string englishWord)
+        public bool AddItem(string key_Word, string value_Word, string lang1, string lang2)
         {
-            bool IsAdded = false;
-            if (KeyValueWordDict.ContainsKey(germanWord) && !KeyValueWordDict[germanWord].Contains(englishWord))
+            IsAdded = false;
+            this.keyWord = key_Word;
+            this.valueWord = value_Word;
+            if (KeyValueWordDict.ContainsKey(keyWord) && !KeyValueWordDict[keyWord].Contains(valueWord))
             {
-                KeyValueWordDict[germanWord].Add(englishWord);
+                KeyValueWordDict[keyWord].Add(valueWord);
             }
-            else if (!KeyValueWordDict.ContainsKey(germanWord))
+            else if (!KeyValueWordDict.ContainsKey(keyWord))
             {
                 valueWordLists = new List<string>();
-                valueWordLists.Add(englishWord);
-                KeyValueWordDict.Add(germanWord, valueWordLists);
+                valueWordLists.Add(valueWord);
+                KeyValueWordDict.Add(keyWord, valueWordLists);
 
             }
             else
             {
                 IsAdded = true;
+            }
+            if (!IsAdded)
+            {
+                InsertAllWord(lang1, lang2);
             }
             return IsAdded;
         }
@@ -157,29 +167,42 @@ namespace Woerterbuchlogic
 
         public void InsertAllWord(string lang1, string lang2)
         {
-            List<string> list = new List<string>();
-            foreach (var item in myAlphabet.AlphabetList)
+
+            myWord = DBSQL.getID(keyWord);
+            Word values = DBSQL.getID(valueWord);
+            
+
+            if (values == null && myWord != null)
             {
-                var list1 = FindResults(item, true);
-                foreach (var item1 in list1)
+                List<string> tempList = new List<string>() { valueWord };
+                InsertValueWord(tempList, lang2);
+            }
+            else
+            {
+
+                List<string> list = new List<string>();
+                foreach (var item in myAlphabet.AlphabetList)
                 {
-                    list.Add(item1);
+                    var list1 = FindResults(item, true);
+                    foreach (var item1 in list1)
+                    {
+                        list.Add(item1);
+                    }
+                }
+                foreach (var word in list)
+                {
+                    if (DBSQL.getID(word) == null)
+                    {
+                        InsertKeyWord(word, lang1, lang2);
+                    }
+                    else
+                    {
+                        continue;
+                    }
+
+
                 }
             }
-            foreach (var word in list)
-            {
-                if (DBSQL.getID(word) == null)
-                {
-                    InsertKeyWord(word, lang1, lang2);
-                }
-                else
-                {
-                    continue;
-                }
-
-
-            }
-
 
         }
         public void CheckOtherLang(string lang2)
@@ -206,6 +229,8 @@ namespace Woerterbuchlogic
                 insertMappe.ColumnValueDict.Add("word1_id", this.myWord.Id.ToString());
                 insertMappe.ColumnValueDict.Add("word2_id", Otherword.Id.ToString());
                 DBSQL.InserWord(insertMappe);
+                keyWord = string.Empty;
+                valueWord = string.Empty;
             }
 
 

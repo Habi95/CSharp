@@ -25,7 +25,12 @@ namespace WoerterBuchData
         {
             URL = uRL;
         }
-
+        /*public MySqlConnection myCon ()
+        {
+            var connection = new MySqlConnection(URL);
+            connection.Open();
+            return connection;
+        }*/
         public void InserWord(InsertMapper insertMapper)
         {
 

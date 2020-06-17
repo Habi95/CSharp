@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btnHinzufügen = new System.Windows.Forms.Button();
             this.labelTranslation = new System.Windows.Forms.Label();
             this.tbGermanWord = new System.Windows.Forms.TextBox();
@@ -54,6 +55,7 @@
             this.buttonDelete = new System.Windows.Forms.Button();
             this.buttonUpdate = new System.Windows.Forms.Button();
             this.textBoxUpdate = new System.Windows.Forms.TextBox();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.SuspendLayout();
             // 
             // btnHinzufügen
@@ -304,6 +306,11 @@
             this.textBoxUpdate.Size = new System.Drawing.Size(189, 22);
             this.textBoxUpdate.TabIndex = 27;
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
             // BackGround
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -371,6 +378,7 @@
         private System.Windows.Forms.Button buttonDelete;
         private System.Windows.Forms.Button buttonUpdate;
         private System.Windows.Forms.TextBox textBoxUpdate;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
     }
 }
 

@@ -58,7 +58,7 @@ namespace WoerterBuch
 
             if (!string.IsNullOrEmpty(germanWord) && !string.IsNullOrEmpty(englishWord))
             {
-                if (!controller.AddItem(germanWord, englishWord))
+                if (!controller.AddItem(germanWord, englishWord, textBoxOutput1.Text, textBoxOutput2.Text))
                 {
                     UpdateTranslation();
                     tbGermanWord.Clear();
