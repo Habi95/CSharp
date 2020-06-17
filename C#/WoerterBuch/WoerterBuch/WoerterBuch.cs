@@ -32,6 +32,8 @@ namespace WoerterBuch
             fillCombo(langArray);
             UpdateAlphabet();
             KeyValueWordDict = controller.ImportchoicedLang(langArray[0], langArray[1]);
+            textBoxOutput1.Text = langArray[0];
+            textBoxOutput2.Text = langArray[1];
             UpdateTranslation();
 
         }
@@ -150,8 +152,8 @@ namespace WoerterBuch
 
         private void buttonImportDB_Click(object sender, EventArgs e)
         {
-            string lang1 = comboBoxLang1.SelectedItem as string;
-            string lang2 = comboBoxLang2.SelectedItem as string;
+            string lang1 = textBoxOutput1.Text;
+            string lang2 = textBoxOutput2.Text;
             if (!string.IsNullOrEmpty(lang1) && !string.IsNullOrEmpty(lang2))
             {
                 KeyValueWordDict = controller.ImportchoicedLang(lang1, lang2);
