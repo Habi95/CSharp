@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30204.135
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskBar", "TaskBar\TaskBar.csproj", "{67CCF1EF-4F47-4C01-881C-16F4EC0CA053}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskLogic", "TaskLogic\TaskLogic.csproj", "{01D13D34-3CF0-4F52-8E76-DF99F487AD3A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskData", "TaskData\TaskData.csproj", "{7DAB5062-C1D1-41AE-BB12-106A17D39DB2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{67CCF1EF-4F47-4C01-881C-16F4EC0CA053}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67CCF1EF-4F47-4C01-881C-16F4EC0CA053}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67CCF1EF-4F47-4C01-881C-16F4EC0CA053}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67CCF1EF-4F47-4C01-881C-16F4EC0CA053}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01D13D34-3CF0-4F52-8E76-DF99F487AD3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01D13D34-3CF0-4F52-8E76-DF99F487AD3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01D13D34-3CF0-4F52-8E76-DF99F487AD3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01D13D34-3CF0-4F52-8E76-DF99F487AD3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DAB5062-C1D1-41AE-BB12-106A17D39DB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DAB5062-C1D1-41AE-BB12-106A17D39DB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DAB5062-C1D1-41AE-BB12-106A17D39DB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DAB5062-C1D1-41AE-BB12-106A17D39DB2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {18F73872-A678-4182-9EA2-A8494E99304A}
+	EndGlobalSection
+EndGlobal
