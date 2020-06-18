@@ -34,6 +34,7 @@ namespace WoerterBuch
             KeyValueWordDict = controller.ImportchoicedLang(langArray[0], langArray[1]);
             textBoxOutput1.Text = langArray[0];
             textBoxOutput2.Text = langArray[1];
+           controller.pairDict();
             UpdateTranslation();
 
         }
@@ -201,6 +202,9 @@ namespace WoerterBuch
 
         }
 
-       
+        private void BackGround_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

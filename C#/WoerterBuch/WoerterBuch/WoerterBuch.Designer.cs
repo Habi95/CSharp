@@ -45,7 +45,6 @@
             this.buttonDB = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.labelGerman = new System.Windows.Forms.Label();
-            this.SaveBtn = new System.Windows.Forms.Button();
             this.comboBoxLang1 = new System.Windows.Forms.ComboBox();
             this.comboBoxLang2 = new System.Windows.Forms.ComboBox();
             this.textBoxOutput1 = new System.Windows.Forms.TextBox();
@@ -119,7 +118,7 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(37, 185);
+            this.btnSearch.Location = new System.Drawing.Point(37, 218);
             this.btnSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(193, 33);
@@ -130,7 +129,7 @@
             // 
             // textBoxSearch
             // 
-            this.textBoxSearch.Location = new System.Drawing.Point(37, 155);
+            this.textBoxSearch.Location = new System.Drawing.Point(38, 190);
             this.textBoxSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxSearch.Name = "textBoxSearch";
             this.textBoxSearch.Size = new System.Drawing.Size(192, 22);
@@ -139,7 +138,7 @@
             // labelSearch
             // 
             this.labelSearch.AutoSize = true;
-            this.labelSearch.Location = new System.Drawing.Point(110, 134);
+            this.labelSearch.Location = new System.Drawing.Point(110, 150);
             this.labelSearch.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelSearch.Name = "labelSearch";
             this.labelSearch.Size = new System.Drawing.Size(46, 16);
@@ -201,7 +200,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(37, 224);
+            this.button1.Location = new System.Drawing.Point(36, 257);
             this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(193, 31);
@@ -219,15 +218,6 @@
             this.labelGerman.Size = new System.Drawing.Size(62, 16);
             this.labelGerman.TabIndex = 18;
             this.labelGerman.Text = "provided";
-            // 
-            // SaveBtn
-            // 
-            this.SaveBtn.Location = new System.Drawing.Point(38, 262);
-            this.SaveBtn.Name = "SaveBtn";
-            this.SaveBtn.Size = new System.Drawing.Size(192, 27);
-            this.SaveBtn.TabIndex = 19;
-            this.SaveBtn.Text = "Save All";
-            this.SaveBtn.UseVisualStyleBackColor = true;            
             // 
             // comboBoxLang1
             // 
@@ -324,7 +314,6 @@
             this.Controls.Add(this.textBoxOutput1);
             this.Controls.Add(this.comboBoxLang2);
             this.Controls.Add(this.comboBoxLang1);
-            this.Controls.Add(this.SaveBtn);
             this.Controls.Add(this.labelGerman);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.buttonDB);
@@ -344,6 +333,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "BackGround";
             this.Text = "WörterBuch";
+            this.Load += new System.EventHandler(this.BackGround_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -367,7 +357,6 @@
         private System.Windows.Forms.Button buttonDB;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label labelGerman;
-        private System.Windows.Forms.Button SaveBtn;
         private System.Windows.Forms.ComboBox comboBoxLang1;
         private System.Windows.Forms.ComboBox comboBoxLang2;
         private System.Windows.Forms.TextBox textBoxOutput1;

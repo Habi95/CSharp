@@ -95,10 +95,11 @@ namespace Woerterbuchlogic
             }
             if (!IsAdded)
             {
-                InsertAllWord(lang1, lang2);
+                InsertWord(lang1, lang2);
             }
             return IsAdded;
         }
+
 
         /// <summary>
         /// writes the dictionary to file
@@ -165,43 +166,23 @@ namespace Woerterbuchlogic
 
         }
 
-        public void InsertAllWord(string lang1, string lang2)
+        public void InsertWord(string lang1, string lang2)
         {
+
 
             myWord = DBSQL.getID(keyWord);
             Word values = DBSQL.getID(valueWord);
-            
+
 
             if (values == null && myWord != null)
             {
                 List<string> tempList = new List<string>() { valueWord };
                 InsertValueWord(tempList, lang2);
             }
-            else 
+            else
             {
                 InsertKeyWord(keyWord, lang1, lang2);
-                /*List<string> list = new List<string>();
-                foreach (var item in myAlphabet.AlphabetList)
-                {
-                    var list1 = FindResults(item, true);
-                    foreach (var item1 in list1)
-                    {
-                        list.Add(item1);
-                    }
-                }
-                foreach (var word in list)
-                {
-                    if (DBSQL.getID(word) == null)
-                    {
-                        InsertKeyWord(word, lang1, lang2);
-                    }
-                    else
-                    {
-                        continue;
-                    }
 
-
-                }*/
             }
 
         }
@@ -224,16 +205,21 @@ namespace Woerterbuchlogic
                 insertMapper.ColumnValueDict.Add("national_code", lang2);
                 DBSQL.InserWord(insertMapper);
                 Word Otherword = DBSQL.getID(item);
-                var insertMappe = new InsertMapper();
-                insertMappe.Table = "dictword";
-                insertMappe.ColumnValueDict.Add("word1_id", this.myWord.Id.ToString());
-                insertMappe.ColumnValueDict.Add("word2_id", Otherword.Id.ToString());
-                DBSQL.InserWord(insertMappe);
-                keyWord = string.Empty;
-                valueWord = string.Empty;
+                InsertDictLink(myWord, Otherword);
+
             }
 
 
+        }
+        public void InsertDictLink(Word keyWordd, Word valueWordd)
+        {
+            var insertMappe = new InsertMapper();
+            insertMappe.Table = "dictword";
+            insertMappe.ColumnValueDict.Add("word1_id", keyWordd.Id.ToString());
+            insertMappe.ColumnValueDict.Add("word2_id", valueWordd.Id.ToString());
+            DBSQL.InserWord(insertMappe);
+            keyWord = string.Empty;
+            valueWord = string.Empty;
         }
 
         public Dictionary<string, List<string>> ImportchoicedLang(string nationalCode1, string nationalCode2)
@@ -242,6 +228,8 @@ namespace Woerterbuchlogic
             KeyValueWordDict = DBSQL.ImportSelectedLangued(nationalCode1, nationalCode2);
             return KeyValueWordDict;
         }
+
+
 
         public bool DeleteWord(string word)
         {
@@ -264,5 +252,81 @@ namespace Woerterbuchlogic
         {
             return myAlphabet.AlphabetList;
         }
+
+        public void pairDict()
+        {
+            Dictionary<string, List<string>> idDict = DBSQL.getMostKeyValueID();
+            foreach (var item in idDict)
+            {
+                Dictionary<Word, List<Word>> keyValuePairs = new Dictionary<Word, List<Word>>();
+                List<Word> wordList = new List<Word>();
+                List<string> list = idDict.Where(x =>
+                                        x.Key.Contains(item.Key))
+                                            .SelectMany(x => x.Value).ToList();
+                foreach (var item1 in list)
+                {
+
+                    var id = Util.Extensions.StringExtension.ConvertType<int>(item1.ToString());
+                    Word word = DBSQL.getWordByID(id.Value);
+                    wordList.Add(word);
+                }
+
+                Word lang = null;
+                for (int i = 0; i < wordList.Count; i++)
+                {
+                    if (lang == null)
+                    {
+                        lang = wordList.ElementAt(i);
+                    }
+                    else
+                    {
+
+                        var lang2 = wordList.ElementAt(i);
+                        if (!lang.NationalCode.Equals(lang2.NationalCode))
+                        {
+                            foreach (var item3 in wordList)
+                            {
+                                if (lang != item3)
+                                {
+                                    if (!keyValuePairs.ContainsKey(lang))
+                                    {
+                                        List<Word> wList = new List<Word>();
+                                        keyValuePairs.Add(lang, wList);
+                                        keyValuePairs[lang].Add(item3);
+                                    }
+                                    else
+                                    {
+                                        keyValuePairs[lang].Add(item3);
+                                    }
+
+
+                                }
+
+                            }
+                        }
+                    }
+                }
+                
+                        foreach (var item6 in keyValuePairs)
+                        {
+                    for (int i = 0; i < item6.Value.Count; i++)
+                    {
+                        if (!DBSQL.CheckLang(item6.Key.Id, item6.Value.ElementAt(i).Id))
+                        {
+                        InsertDictLink(item6.Key, item6.Value.ElementAt(i));
+                        }
+                    
+                    }
+                   
+                        }
+
+
+                    
+                
+
+            }
+
+        }
+
     }
 }
