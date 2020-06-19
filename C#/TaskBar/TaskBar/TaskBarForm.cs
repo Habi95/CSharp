@@ -38,8 +38,10 @@ namespace TaskBar
 
         private void buttonShow_Click(object sender, EventArgs e)
         {
-            
-            //var form = 
+
+            var form = new TaskBarFormMenu(ref controller);
+            this.Hide();
+            form.Show();
         }
     }
 }

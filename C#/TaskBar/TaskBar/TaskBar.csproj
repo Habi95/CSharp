@@ -64,6 +64,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TaskBarFormMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TaskBarFormMenu.Designer.cs">
+      <DependentUpon>TaskBarFormMenu.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="TaskBarForm.resx">
       <DependentUpon>TaskBarForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -76,6 +82,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="TaskBarFormMenu.resx">
+      <DependentUpon>TaskBarFormMenu.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -91,10 +100,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TaskData\TaskData.csproj">
+      <Project>{7dab5062-c1d1-41ae-bb12-106a17d39db2}</Project>
+      <Name>TaskData</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TaskLogic\TaskLogic.csproj">
       <Project>{01d13d34-3cf0-4f52-8e76-df99f487ad3a}</Project>
       <Name>TaskLogic</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
