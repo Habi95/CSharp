@@ -55,6 +55,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Util\Util\Util.csproj">
+      <Project>{5b44cabb-53f0-469b-a490-3ca4f499d16d}</Project>
+      <Name>Util</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TaskData\TaskData.csproj">
       <Project>{7dab5062-c1d1-41ae-bb12-106a17d39db2}</Project>
       <Name>TaskData</Name>

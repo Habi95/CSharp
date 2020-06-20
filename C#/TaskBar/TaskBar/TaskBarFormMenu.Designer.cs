@@ -40,6 +40,7 @@
             this.buttonDutyOnDate = new System.Windows.Forms.Button();
             this.buttonToday = new System.Windows.Forms.Button();
             this.buttonShowAll = new System.Windows.Forms.Button();
+            this.buttonRemove = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // labelPlaceholder
@@ -135,9 +136,19 @@
             this.buttonShowAll.Name = "buttonShowAll";
             this.buttonShowAll.Size = new System.Drawing.Size(83, 23);
             this.buttonShowAll.TabIndex = 11;
-            this.buttonShowAll.Text = "Show All";
+            this.buttonShowAll.Text = "Reload";
             this.buttonShowAll.UseVisualStyleBackColor = true;
             this.buttonShowAll.Click += new System.EventHandler(this.buttonShowAll_Click);
+            // 
+            // buttonRemove
+            // 
+            this.buttonRemove.Location = new System.Drawing.Point(213, 328);
+            this.buttonRemove.Name = "buttonRemove";
+            this.buttonRemove.Size = new System.Drawing.Size(75, 23);
+            this.buttonRemove.TabIndex = 12;
+            this.buttonRemove.Text = "Remove";
+            this.buttonRemove.UseVisualStyleBackColor = true;
+            this.buttonRemove.Click += new System.EventHandler(this.buttonRemove_Click);
             // 
             // TaskBarFormMenu
             // 
@@ -145,6 +156,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
             this.ClientSize = new System.Drawing.Size(591, 477);
+            this.Controls.Add(this.buttonRemove);
             this.Controls.Add(this.buttonShowAll);
             this.Controls.Add(this.buttonToday);
             this.Controls.Add(this.buttonDutyOnDate);
@@ -174,5 +186,6 @@
         private System.Windows.Forms.Button buttonDutyOnDate;
         private System.Windows.Forms.Button buttonToday;
         private System.Windows.Forms.Button buttonShowAll;
+        private System.Windows.Forms.Button buttonRemove;
     }
 }

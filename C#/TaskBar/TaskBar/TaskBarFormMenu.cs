@@ -47,7 +47,7 @@ namespace TaskBar
         private void UpdateListBox ()
         {
 
-            listBoxToDos.DataSource = taskList.OrderBy(x => x.dateTime).Select(x => $"{x.toDo} {x.dateTime}").ToList();           
+            listBoxToDos.DataSource = taskList.OrderBy(x => x.dateTime).Select(x => $"{x.id} - {x.toDo} - {x.dateTime}").ToList();           
            
 
         }
@@ -74,6 +74,11 @@ namespace TaskBar
         {
             taskList = controller.getAllTask();
             UpdateListBox();
+        }
+
+        private void buttonRemove_Click(object sender, EventArgs e)
+        {
+            controller.RemoveTask(listBoxToDos.SelectedItem as string);
         }
     }
 }

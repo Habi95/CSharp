@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using TaskData;
@@ -29,7 +30,35 @@ namespace TaskLogic
         public List<task_bar> getAllTask()
         {
             var task = entities.task_bar.ToList();
-            return task;
+            var taskList = checkDate(task);
+            return taskList;
+        }
+
+        public List<task_bar> checkDate(List<task_bar> task)
+        {
+            List<task_bar> list = new List<task_bar>();
+            foreach (var item in task)
+            {
+                if (item.dateTime.Day >= DateTime.Now.Day && item.dateTime.Month >= DateTime.Now.Month && item.dateTime.Year >= DateTime.Now.Year)
+                {
+
+                    item.expired = false;
+                    list.Add(item);
+
+
+                }
+                else
+                {
+                    entities.task_bar.Remove(item);
+                    entities.SaveChanges();
+                }
+
+
+
+            }
+
+            return list;
+
         }
 
         public List<task_bar> GetTaskByDate(DateTime? date)
@@ -52,6 +81,23 @@ namespace TaskLogic
 
 
             return tasks;
+        }
+
+        public void RemoveTask(string task)
+        {
+            var toRemovedTask = task.Split('-');
+            int? removeId = Util.Extensions.StringExtension.ConvertType<int>(toRemovedTask[0]);
+            if (removeId.HasValue)
+            {
+                var tasks = entities.task_bar.Where(x => x.id == removeId.Value).ToList();
+                foreach (var item in tasks)
+                {
+                    entities.task_bar.Remove(item);
+                    entities.SaveChanges();
+                }
+
+            }
+
         }
 
     }
