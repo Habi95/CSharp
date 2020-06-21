@@ -20,6 +20,12 @@ namespace TaskBar
             timerNow.Start();
             controller = new Controller();
             //controller.newTask();
+        }public TaskBarForm(ref Controller actController)
+        {
+            InitializeComponent();
+            timerNow.Start();
+            controller = actController;
+            //controller.newTask();
         }
 
         private void timerNow_Tick(object sender, EventArgs e)

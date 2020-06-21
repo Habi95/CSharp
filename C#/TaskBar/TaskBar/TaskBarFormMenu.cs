@@ -80,5 +80,12 @@ namespace TaskBar
         {
             controller.RemoveTask(listBoxToDos.SelectedItem as string);
         }
+
+        private void buttonNewTask_Click(object sender, EventArgs e)
+        {
+            var form = new TaskBarForm(ref controller);
+            this.Hide();
+            form.Show();
+        }
     }
 }

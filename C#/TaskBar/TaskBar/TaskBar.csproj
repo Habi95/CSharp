@@ -56,6 +56,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TaskBarEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TaskBarEdit.Designer.cs">
+      <DependentUpon>TaskBarEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="TaskBarForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -70,6 +76,9 @@
     <Compile Include="TaskBarFormMenu.Designer.cs">
       <DependentUpon>TaskBarFormMenu.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="TaskBarEdit.resx">
+      <DependentUpon>TaskBarEdit.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TaskBarForm.resx">
       <DependentUpon>TaskBarForm.cs</DependentUpon>
     </EmbeddedResource>
