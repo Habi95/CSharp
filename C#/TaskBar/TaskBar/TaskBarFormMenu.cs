@@ -16,9 +16,9 @@ namespace TaskBar
 {
     /*
      * 
-     * TODO:check if current task are expiere when then delete 
+     * 
      * TODO: when time to do the task nearly one hour before then show up in a pop up
-     * TODO: option to edit the task other date or other time
+     * 
      * 
      */
   
@@ -52,6 +52,12 @@ namespace TaskBar
 
         }
 
+        private void Reload()
+        {
+            taskList = controller.getAllTask();
+            UpdateListBox();
+        }
+
         private void timerNow2_Tick(object sender, EventArgs e)
         {
             Timelabel.Text = DateTime.Now.ToString("HH:mm:ss");
@@ -70,20 +76,25 @@ namespace TaskBar
             UpdateListBox();
         }
 
-        private void buttonShowAll_Click(object sender, EventArgs e)
-        {
-            taskList = controller.getAllTask();
-            UpdateListBox();
-        }
+       
 
         private void buttonRemove_Click(object sender, EventArgs e)
         {
             controller.RemoveTask(listBoxToDos.SelectedItem as string);
+            Reload();
         }
 
         private void buttonNewTask_Click(object sender, EventArgs e)
         {
             var form = new TaskBarForm(ref controller);
+            this.Hide();
+            form.Show();
+        }
+
+        private void buttonEdit_Click(object sender, EventArgs e)
+        {
+
+            var form = new TaskBarEdit(ref controller, listBoxToDos.SelectedItem as string );
             this.Hide();
             form.Show();
         }

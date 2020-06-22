@@ -28,13 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.labelPlaceholder = new System.Windows.Forms.Label();
             this.Datelabel = new System.Windows.Forms.Label();
             this.Timelabel = new System.Windows.Forms.Label();
             this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.buttonShow = new System.Windows.Forms.Button();
-            this.buttonAdded = new System.Windows.Forms.Button();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.buttonUpdate = new System.Windows.Forms.Button();
+            this.richTextBox = new System.Windows.Forms.RichTextBox();
+            this.buttonRemove = new System.Windows.Forms.Button();
+            this.timer = new System.Windows.Forms.Timer(this.components);
+            this.buttonNewTask = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // labelPlaceholder
@@ -77,34 +81,61 @@
             this.dateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePicker.Location = new System.Drawing.Point(47, 40);
             this.dateTimePicker.Name = "dateTimePicker";
-            this.dateTimePicker.Size = new System.Drawing.Size(146, 26);
+            this.dateTimePicker.Size = new System.Drawing.Size(159, 26);
             this.dateTimePicker.TabIndex = 9;
             // 
             // buttonShow
             // 
-            this.buttonShow.Location = new System.Drawing.Point(71, 282);
+            this.buttonShow.Location = new System.Drawing.Point(147, 250);
             this.buttonShow.Name = "buttonShow";
             this.buttonShow.Size = new System.Drawing.Size(91, 26);
             this.buttonShow.TabIndex = 12;
             this.buttonShow.Text = "Show All";
             this.buttonShow.UseVisualStyleBackColor = true;
+            this.buttonShow.Click += new System.EventHandler(this.buttonShow_Click);
             // 
-            // buttonAdded
+            // buttonUpdate
             // 
-            this.buttonAdded.Location = new System.Drawing.Point(71, 250);
-            this.buttonAdded.Name = "buttonAdded";
-            this.buttonAdded.Size = new System.Drawing.Size(91, 26);
-            this.buttonAdded.TabIndex = 11;
-            this.buttonAdded.Text = "Added";
-            this.buttonAdded.UseVisualStyleBackColor = true;
+            this.buttonUpdate.Location = new System.Drawing.Point(17, 250);
+            this.buttonUpdate.Name = "buttonUpdate";
+            this.buttonUpdate.Size = new System.Drawing.Size(91, 26);
+            this.buttonUpdate.TabIndex = 11;
+            this.buttonUpdate.Text = "Update";
+            this.buttonUpdate.UseVisualStyleBackColor = true;
+            this.buttonUpdate.Click += new System.EventHandler(this.buttonUpdate_Click);
             // 
-            // richTextBox1
+            // richTextBox
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(45, 86);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(147, 145);
-            this.richTextBox1.TabIndex = 13;
-            this.richTextBox1.Text = "";
+            this.richTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.richTextBox.Location = new System.Drawing.Point(47, 86);
+            this.richTextBox.Name = "richTextBox";
+            this.richTextBox.Size = new System.Drawing.Size(159, 145);
+            this.richTextBox.TabIndex = 13;
+            this.richTextBox.Text = "";
+            // 
+            // buttonRemove
+            // 
+            this.buttonRemove.Location = new System.Drawing.Point(17, 282);
+            this.buttonRemove.Name = "buttonRemove";
+            this.buttonRemove.Size = new System.Drawing.Size(91, 26);
+            this.buttonRemove.TabIndex = 14;
+            this.buttonRemove.Text = "Remove";
+            this.buttonRemove.UseVisualStyleBackColor = true;
+            this.buttonRemove.Click += new System.EventHandler(this.buttonRemove_Click);
+            // 
+            // timer
+            // 
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
+            // 
+            // buttonNewTask
+            // 
+            this.buttonNewTask.Location = new System.Drawing.Point(147, 282);
+            this.buttonNewTask.Name = "buttonNewTask";
+            this.buttonNewTask.Size = new System.Drawing.Size(91, 26);
+            this.buttonNewTask.TabIndex = 15;
+            this.buttonNewTask.Text = "New Task";
+            this.buttonNewTask.UseVisualStyleBackColor = true;
+            this.buttonNewTask.Click += new System.EventHandler(this.buttonNewTask_Click);
             // 
             // TaskBarEdit
             // 
@@ -112,9 +143,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
             this.ClientSize = new System.Drawing.Size(265, 367);
-            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.buttonNewTask);
+            this.Controls.Add(this.buttonRemove);
+            this.Controls.Add(this.richTextBox);
             this.Controls.Add(this.buttonShow);
-            this.Controls.Add(this.buttonAdded);
+            this.Controls.Add(this.buttonUpdate);
             this.Controls.Add(this.dateTimePicker);
             this.Controls.Add(this.labelPlaceholder);
             this.Controls.Add(this.Datelabel);
@@ -133,7 +166,10 @@
         private System.Windows.Forms.Label Timelabel;
         private System.Windows.Forms.DateTimePicker dateTimePicker;
         private System.Windows.Forms.Button buttonShow;
-        private System.Windows.Forms.Button buttonAdded;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.Button buttonUpdate;
+        private System.Windows.Forms.RichTextBox richTextBox;
+        private System.Windows.Forms.Button buttonRemove;
+        private System.Windows.Forms.Timer timer;
+        private System.Windows.Forms.Button buttonNewTask;
     }
 }

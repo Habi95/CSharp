@@ -39,7 +39,6 @@
             this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.buttonDutyOnDate = new System.Windows.Forms.Button();
             this.buttonToday = new System.Windows.Forms.Button();
-            this.buttonShowAll = new System.Windows.Forms.Button();
             this.buttonRemove = new System.Windows.Forms.Button();
             this.buttonEdit = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -132,19 +131,9 @@
             this.buttonToday.UseVisualStyleBackColor = true;
             this.buttonToday.Click += new System.EventHandler(this.buttonToday_Click);
             // 
-            // buttonShowAll
-            // 
-            this.buttonShowAll.Location = new System.Drawing.Point(124, 328);
-            this.buttonShowAll.Name = "buttonShowAll";
-            this.buttonShowAll.Size = new System.Drawing.Size(106, 23);
-            this.buttonShowAll.TabIndex = 12;
-            this.buttonShowAll.Text = "Reload";
-            this.buttonShowAll.UseVisualStyleBackColor = true;
-            this.buttonShowAll.Click += new System.EventHandler(this.buttonShowAll_Click);
-            // 
             // buttonRemove
             // 
-            this.buttonRemove.Location = new System.Drawing.Point(124, 357);
+            this.buttonRemove.Location = new System.Drawing.Point(236, 328);
             this.buttonRemove.Name = "buttonRemove";
             this.buttonRemove.Size = new System.Drawing.Size(106, 23);
             this.buttonRemove.TabIndex = 12;
@@ -154,22 +143,22 @@
             // 
             // buttonEdit
             // 
-            this.buttonEdit.Location = new System.Drawing.Point(12, 357);
+            this.buttonEdit.Location = new System.Drawing.Point(124, 328);
             this.buttonEdit.Name = "buttonEdit";
             this.buttonEdit.Size = new System.Drawing.Size(106, 23);
             this.buttonEdit.TabIndex = 12;
             this.buttonEdit.Text = "Edit";
             this.buttonEdit.UseVisualStyleBackColor = true;
+            this.buttonEdit.Click += new System.EventHandler(this.buttonEdit_Click);
             // 
             // TaskBarFormMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.ClientSize = new System.Drawing.Size(591, 477);
+            this.ClientSize = new System.Drawing.Size(591, 374);
             this.Controls.Add(this.buttonEdit);
             this.Controls.Add(this.buttonRemove);
-            this.Controls.Add(this.buttonShowAll);
             this.Controls.Add(this.buttonToday);
             this.Controls.Add(this.buttonDutyOnDate);
             this.Controls.Add(this.dateTimePicker);
@@ -197,7 +186,6 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker;
         private System.Windows.Forms.Button buttonDutyOnDate;
         private System.Windows.Forms.Button buttonToday;
-        private System.Windows.Forms.Button buttonShowAll;
         private System.Windows.Forms.Button buttonRemove;
         private System.Windows.Forms.Button buttonEdit;
     }

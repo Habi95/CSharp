@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -81,6 +82,38 @@ namespace TaskLogic
 
 
             return tasks;
+        }
+        public task_bar GetTaskById (string task)
+        {
+            var taskArray = task.Split('-');
+            int? taskId = Util.Extensions.StringExtension.ConvertType<int>(taskArray[0]);
+            task_bar taskObject = null;
+            if (taskId.HasValue)
+            {
+                var tasks = entities.task_bar.Where(x => x.id == taskId.Value).ToList();
+                taskObject = tasks.ElementAt(0);
+            }
+            return taskObject;
+        }
+
+        public void UpdateTask (string task)
+        {
+            task_bar taskObject = GetTaskById(task); 
+            var toUpdateTask = task.Split('-');
+            int? taskId = Util.Extensions.StringExtension.ConvertType<int>(toUpdateTask[0]);
+            DateTime? date_time = Util.Extensions.StringExtension.ConvertType<DateTime>(toUpdateTask[2]);
+            if (taskId.HasValue && date_time.HasValue)
+            {
+               
+                taskObject.id = taskId.Value;
+                taskObject.toDo = toUpdateTask[1];
+                taskObject.dateTime = date_time.Value;
+                taskObject.done = false;
+                taskObject.expired = false;
+               // entities.task_bar.Add(taskObject);
+                entities.SaveChanges();
+
+            }
         }
 
         public void RemoveTask(string task)
