@@ -17,7 +17,7 @@ namespace TaskBar
     /*
      * 
      * 
-     * TODO: when time to do the task nearly one hour before then show up in a pop up
+     *
      * 
      * 
      */
@@ -38,18 +38,27 @@ namespace TaskBar
             this.controller =  controller;
             taskList = controller.getAllTask();
             UpdateListBox();
-            
+            PopUpTask();
             
         }    
         
-         
+         private void PopUpTask ()
+        {
+           var list = controller.actTaskToDO(taskList);
+            string toDos = string.Empty;
+            foreach (var item in list)
+            {
+                toDos += $"{item.toDo} - {item.dateTime}\n";
+            }
+            MessageBox.Show(toDos,"ToDo´s Today" );
+
+        }
 
         private void UpdateListBox ()
         {
 
             listBoxToDos.DataSource = taskList.OrderBy(x => x.dateTime).Select(x => $"{x.id} - {x.toDo} - {x.dateTime}").ToList();           
            
-
         }
 
         private void Reload()

@@ -133,5 +133,25 @@ namespace TaskLogic
 
         }
 
+        public List<task_bar> actTaskToDO (List<task_bar> list)
+        {
+            List<task_bar> taskToDo = new List<task_bar>();
+            int toPopUp = 2;
+            foreach (var item in list)
+            {
+                if (item.dateTime.Day == DateTime.Now.Day && item.dateTime.Month == DateTime.Now.Month && item.dateTime.Year == DateTime.Now.Year)
+                {
+                    var timeLeft = item.dateTime.Hour - DateTime.Now.Hour;
+                    if (timeLeft <= toPopUp )
+                    {
+                        taskToDo.Add(item);
+
+                    }
+
+                }
+            }
+            return taskToDo;
+        }
+
     }
 }
