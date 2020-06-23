@@ -53,8 +53,8 @@ namespace DepartmentController
         }
         public void DragUpdate (string newParent, string newChild)
         {
-            Staff newP = entities.Staff.Where(x => x.department.Equals(newParent)).FirstOrDefault();
-            Staff newCh = entities.Staff.Where(x => x.department.Equals(newChild)).FirstOrDefault();
+            Staff newP = entities.Staff.FirstOrDefault(x => x.department.Equals(newParent));
+            Staff newCh = entities.Staff.FirstOrDefault(x => x.department.Equals(newChild));
             newCh.parent_id = newP.id;
             entities.SaveChanges();
         }

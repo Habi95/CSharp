@@ -84,20 +84,24 @@ namespace TreeViewDeparment
             UpdateTree();
         }
 
+
+
+
+
         private void treeViewDepartment_DragOver(object sender, DragEventArgs e)
         {
-            Point targetPoint = treeViewDepartment.PointToClient(new Point(e.X, e.Y));
+            Point targetPoint = treeViewDepartment.PointToClient(new Point(e.X, e.Y)); //3
 
 
             treeViewDepartment.SelectedNode = treeViewDepartment.GetNodeAt(targetPoint);
         }
 
-        private void treeViewDepartment_DragEnter(object sender, DragEventArgs e)
+        private void treeViewDepartment_DragEnter(object sender, DragEventArgs e) //second
         {
             e.Effect = e.AllowedEffect;
         }
 
-        private void treeViewDepartment_DragDrop(object sender, DragEventArgs e)
+        private void treeViewDepartment_DragDrop(object sender, DragEventArgs e) //4
         {
             Point targetPoint = treeViewDepartment.PointToClient(new Point(e.X, e.Y));
 
@@ -115,6 +119,7 @@ namespace TreeViewDeparment
                 {
                     draggedNode.Remove();
                     targetNode.Nodes.Add(draggedNode);
+                    controller.DragUpdate(targetNode.Text, draggedNode.Text);
                 }
 
                 
@@ -128,7 +133,7 @@ namespace TreeViewDeparment
             }
         }
 
-        private void treeViewDepartment_ItemDrag(object sender, ItemDragEventArgs e)
+        private void treeViewDepartment_ItemDrag(object sender, ItemDragEventArgs e) // first
         {
             if (e.Button == MouseButtons.Left)
             {
@@ -144,8 +149,7 @@ namespace TreeViewDeparment
         {
            
             if (node2.Parent == null) return false;
-            if (node2.Parent.Equals(node1)) return true;            
-            controller.DragUpdate(node2.Text, node1.Text);
+            if (node2.Parent.Equals(node1)) return true;
             return ContainsNode(node1, node2.Parent);
         }
     }
