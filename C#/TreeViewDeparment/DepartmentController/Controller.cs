@@ -9,21 +9,13 @@ namespace DepartmentController
 {
     public class Controller
     {
-        //staff2 parent Object
-        //staff1 child object in List
-
+        
         DeparmentTreeEntities entities = new DeparmentTreeEntities();
         List<Staff> staffList = new List<Staff>();
 
 
         public List<Staff> GetAllDep()
-        {
-            /*Staff boss = entities.Staff.Where(x => x.department == "Vertrieb Österreich").FirstOrDefault();
-            Staff newStaff = new Staff();
-            newStaff.parent_id = boss.id;
-            newStaff.department = "Vertrieb Vorarlberg";
-            entities.Staff.Add(newStaff);
-            entities.SaveChanges();*/
+        {            
             staffList = entities.Staff.ToList();
             return staffList;
         }
