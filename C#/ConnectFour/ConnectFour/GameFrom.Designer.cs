@@ -1,4 +1,6 @@
-﻿namespace ConnectFour
+﻿using System.Windows.Forms;
+
+namespace ConnectFour
 {
     partial class GameFrom
     {

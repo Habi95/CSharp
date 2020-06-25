@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GameController;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -25,15 +26,19 @@ namespace ConnectFour
         int counter = 0;
         Stopwatch stopwatch;
         bool hasStarted = false;
+        bool hasWon = false;
+        int playWon;
+        Controller controller;
         public GameFrom()
         {
             InitializeComponent();
             timer.Start();
-            stopwatch = new Stopwatch();                       
+            stopwatch = new Stopwatch();
             boardColumns = new Rectangle[7];
             board = new int[6, 7];
             graph = this.CreateGraphics();
-           
+            controller = new Controller();
+
 
 
         }
@@ -41,7 +46,7 @@ namespace ConnectFour
         private void GameFrom_Paint(object sender, PaintEventArgs e)
         {
 
-           
+
             if (hasStarted)
             {
                 graph.FillRectangle(Brushes.Black, 200, 160, 450, 350);
@@ -66,40 +71,76 @@ namespace ConnectFour
                         }
                     }
                 }
+                if (hasWon)
+                {
+                    if (idOfPlayer1 == playWon)
+                    {
+                        MessageBox.Show(string.IsNullOrEmpty(player1Name) ? "Player1 Has Won" : $"{player1Name} Has Won", "Winner");
+                        buttonQuit_Click(null,null);
+
+                    }
+                    else
+                    {
+                        MessageBox.Show(string.IsNullOrEmpty(player2Name) ? "Player2 Has Won" : $"{player2Name} Has Won", "Winner");
+                        buttonQuit_Click(null, null);
+                    }
+                }
             }
         }
         private void button_Click(object sender, EventArgs e)
         {
             if (hasStarted)
-            {            
-            counter++;
-            Button button = (Button)sender;
-            int row = int.Parse(button.Text) - 1;
-            int? column = null;
-            for (int i = 5; i >= 0; i--)
             {
-                var k = board[i, row];
-                if (k == 0)
+                counter++;
+                Button button = (Button)sender;
+                int row = int.Parse(button.Text) - 1;
+                int? column = null;
+                for (int i = 5; i >= 0; i--)
                 {
-                    column = i;
-                    if (counter % 2 == 0)
+                    var k = board[i, row];
+                    if (k == 0)
                     {
-                        board[i, row] = idOfPlayer2;
-                        labelHowIsMove.Text = string.IsNullOrEmpty(player1Name) ? "Player1 is on turn" : $"{player1Name} your Turn";
-                        break;
-                    }
-                    else
-                    {
-                        board[i, row] = idOfPlayer1;
-                        labelHowIsMove.Text = string.IsNullOrEmpty(player2Name) ? "Player2 is on turn" : $"{player2Name} your Turn";
-                        break;
+                        column = i;
+                        if (counter % 2 == 0)
+                        {
+                            board[i, row] = idOfPlayer2;
+                            labelHowIsMove.Text = string.IsNullOrEmpty(player1Name) ? "Player1 is on turn" : $"{player1Name} your Turn";
+                            var x = Winner(idOfPlayer2);
+                            if (x == idOfPlayer2)
+                            {
+                                hasWon = true;
+                                playWon = idOfPlayer1;
+                            }
+                            break;
+                        }
+                        else
+                        {
+                            board[i, row] = idOfPlayer1;
+                            labelHowIsMove.Text = string.IsNullOrEmpty(player2Name) ? "Player2 is on turn" : $"{player2Name} your Turn";
+                            var x = Winner(idOfPlayer1);
+                            if (x == idOfPlayer1)
+                            {
+                                hasWon = true;
+                                playWon = idOfPlayer2;
+                            }
+                            break;
+                        }
                     }
                 }
+                OnPaint(null);
             }
-            OnPaint(null);
-            }
+
+        }
+        private int Winner(int playerToCheck)
+        {
+
+           return controller.CheckWinner(playerToCheck, board);
+
+  
         }
 
+
+      
         private void buttonStart_Click(object sender, EventArgs e)
         {
             stopwatch.Start();
@@ -122,10 +163,12 @@ namespace ConnectFour
 
         private void buttonQuit_Click(object sender, EventArgs e)
         {
-           
+
             stopwatch.Reset();
             board = new int[6, 7];
             hasStarted = false;
+            hasWon = false;
+            counter = 0;
             Refresh();
         }
     }
