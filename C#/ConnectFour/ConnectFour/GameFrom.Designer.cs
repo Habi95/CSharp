@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.buttonRow1 = new System.Windows.Forms.Button();
             this.buttonRow2 = new System.Windows.Forms.Button();
             this.buttonRow7 = new System.Windows.Forms.Button();
@@ -35,18 +36,20 @@
             this.buttonRow5 = new System.Windows.Forms.Button();
             this.buttonRow4 = new System.Windows.Forms.Button();
             this.buttonRow3 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelStopWatch = new System.Windows.Forms.Label();
             this.buttonStart = new System.Windows.Forms.Button();
             this.buttonQuit = new System.Windows.Forms.Button();
             this.labelHowIsMove = new System.Windows.Forms.Label();
             this.labelPlayer2 = new System.Windows.Forms.Label();
             this.labelPlayer1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBoxPlayer1 = new System.Windows.Forms.TextBox();
+            this.textBoxPlayer2 = new System.Windows.Forms.TextBox();
+            this.timer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // buttonRow1
             // 
+            this.buttonRow1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonRow1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.buttonRow1.Location = new System.Drawing.Point(200, 110);
             this.buttonRow1.Name = "buttonRow1";
@@ -58,6 +61,7 @@
             // 
             // buttonRow2
             // 
+            this.buttonRow2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonRow2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.buttonRow2.Location = new System.Drawing.Point(268, 110);
             this.buttonRow2.Name = "buttonRow2";
@@ -69,6 +73,7 @@
             // 
             // buttonRow7
             // 
+            this.buttonRow7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonRow7.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.buttonRow7.Location = new System.Drawing.Point(608, 110);
             this.buttonRow7.Name = "buttonRow7";
@@ -80,6 +85,7 @@
             // 
             // buttonRow6
             // 
+            this.buttonRow6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonRow6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonRow6.Location = new System.Drawing.Point(540, 110);
             this.buttonRow6.Name = "buttonRow6";
@@ -91,6 +97,7 @@
             // 
             // buttonRow5
             // 
+            this.buttonRow5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonRow5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonRow5.Location = new System.Drawing.Point(472, 110);
             this.buttonRow5.Name = "buttonRow5";
@@ -102,6 +109,7 @@
             // 
             // buttonRow4
             // 
+            this.buttonRow4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonRow4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.buttonRow4.Location = new System.Drawing.Point(404, 110);
             this.buttonRow4.Name = "buttonRow4";
@@ -113,6 +121,7 @@
             // 
             // buttonRow3
             // 
+            this.buttonRow3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonRow3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.buttonRow3.Location = new System.Drawing.Point(336, 110);
             this.buttonRow3.Name = "buttonRow3";
@@ -122,18 +131,19 @@
             this.buttonRow3.UseVisualStyleBackColor = true;
             this.buttonRow3.Click += new System.EventHandler(this.button_Click);
             // 
-            // label1
+            // labelStopWatch
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F);
-            this.label1.Location = new System.Drawing.Point(338, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(174, 46);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "00:00:00";
+            this.labelStopWatch.AutoSize = true;
+            this.labelStopWatch.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F);
+            this.labelStopWatch.Location = new System.Drawing.Point(338, 9);
+            this.labelStopWatch.Name = "labelStopWatch";
+            this.labelStopWatch.Size = new System.Drawing.Size(174, 46);
+            this.labelStopWatch.TabIndex = 8;
+            this.labelStopWatch.Text = "00:00:00";
             // 
             // buttonStart
             // 
+            this.buttonStart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
             this.buttonStart.Location = new System.Drawing.Point(200, 12);
             this.buttonStart.Name = "buttonStart";
@@ -141,9 +151,11 @@
             this.buttonStart.TabIndex = 9;
             this.buttonStart.Text = "Start";
             this.buttonStart.UseVisualStyleBackColor = true;
+            this.buttonStart.Click += new System.EventHandler(this.buttonStart_Click);
             // 
             // buttonQuit
             // 
+            this.buttonQuit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonQuit.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
             this.buttonQuit.Location = new System.Drawing.Point(564, 12);
             this.buttonQuit.Name = "buttonQuit";
@@ -151,6 +163,7 @@
             this.buttonQuit.TabIndex = 10;
             this.buttonQuit.Text = "Quit";
             this.buttonQuit.UseVisualStyleBackColor = true;
+            this.buttonQuit.Click += new System.EventHandler(this.buttonQuit_Click);
             // 
             // labelHowIsMove
             // 
@@ -182,21 +195,26 @@
             this.labelPlayer1.TabIndex = 13;
             this.labelPlayer1.Text = "Player 1 Name";
             // 
-            // textBox1
+            // textBoxPlayer1
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.textBox1.Location = new System.Drawing.Point(23, 121);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(140, 30);
-            this.textBox1.TabIndex = 14;
+            this.textBoxPlayer1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.textBoxPlayer1.Location = new System.Drawing.Point(23, 121);
+            this.textBoxPlayer1.Name = "textBoxPlayer1";
+            this.textBoxPlayer1.Size = new System.Drawing.Size(140, 30);
+            this.textBoxPlayer1.TabIndex = 14;
             // 
-            // textBox2
+            // textBoxPlayer2
             // 
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.textBox2.Location = new System.Drawing.Point(683, 121);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(140, 30);
-            this.textBox2.TabIndex = 15;
+            this.textBoxPlayer2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.textBoxPlayer2.Location = new System.Drawing.Point(683, 121);
+            this.textBoxPlayer2.Name = "textBoxPlayer2";
+            this.textBoxPlayer2.Size = new System.Drawing.Size(140, 30);
+            this.textBoxPlayer2.TabIndex = 15;
+            // 
+            // timer
+            // 
+            this.timer.Interval = 1000;
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
             // GameFrom
             // 
@@ -206,14 +224,14 @@
             this.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(875, 698);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textBoxPlayer2);
+            this.Controls.Add(this.textBoxPlayer1);
             this.Controls.Add(this.labelPlayer1);
             this.Controls.Add(this.labelPlayer2);
             this.Controls.Add(this.labelHowIsMove);
             this.Controls.Add(this.buttonQuit);
             this.Controls.Add(this.buttonStart);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.labelStopWatch);
             this.Controls.Add(this.buttonRow3);
             this.Controls.Add(this.buttonRow4);
             this.Controls.Add(this.buttonRow5);
@@ -221,7 +239,8 @@
             this.Controls.Add(this.buttonRow7);
             this.Controls.Add(this.buttonRow2);
             this.Controls.Add(this.buttonRow1);
-            this.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.DoubleBuffered = true;
             this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "GameFrom";
@@ -240,14 +259,15 @@
         private System.Windows.Forms.Button buttonRow5;
         private System.Windows.Forms.Button buttonRow4;
         private System.Windows.Forms.Button buttonRow3;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelStopWatch;
         private System.Windows.Forms.Button buttonStart;
         private System.Windows.Forms.Button buttonQuit;
         private System.Windows.Forms.Label labelHowIsMove;
         private System.Windows.Forms.Label labelPlayer2;
         private System.Windows.Forms.Label labelPlayer1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBoxPlayer1;
+        private System.Windows.Forms.TextBox textBoxPlayer2;
+        private System.Windows.Forms.Timer timer;
     }
 }
 

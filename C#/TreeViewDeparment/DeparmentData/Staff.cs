@@ -25,7 +25,7 @@ namespace DeparmentData
         public Nullable<int> parent_id { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Staff> Staff1 { get; set; }
+        public virtual ICollection<Staff>  Staff1 { get; set; }
         public virtual Staff Staff2 { get; set; }
     }
 }
