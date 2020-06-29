@@ -173,9 +173,9 @@ namespace ConnectFour
             this.labelHowIsMove.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.labelHowIsMove.Location = new System.Drawing.Point(355, 66);
             this.labelHowIsMove.Name = "labelHowIsMove";
-            this.labelHowIsMove.Size = new System.Drawing.Size(144, 25);
+            this.labelHowIsMove.Size = new System.Drawing.Size(174, 25);
             this.labelHowIsMove.TabIndex = 11;
-            this.labelHowIsMove.Text = "How is in Move";
+            this.labelHowIsMove.Text = "How is in Move      ";
             // 
             // labelPlayer2
             // 
@@ -226,14 +226,13 @@ namespace ConnectFour
             this.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(875, 698);
+            this.Controls.Add(this.buttonQuit);
+            this.Controls.Add(this.buttonStart);
             this.Controls.Add(this.textBoxPlayer2);
             this.Controls.Add(this.textBoxPlayer1);
             this.Controls.Add(this.labelPlayer1);
             this.Controls.Add(this.labelPlayer2);
             this.Controls.Add(this.labelHowIsMove);
-            this.Controls.Add(this.buttonQuit);
-            this.Controls.Add(this.buttonStart);
-            this.Controls.Add(this.labelStopWatch);
             this.Controls.Add(this.buttonRow3);
             this.Controls.Add(this.buttonRow4);
             this.Controls.Add(this.buttonRow5);
@@ -241,6 +240,7 @@ namespace ConnectFour
             this.Controls.Add(this.buttonRow7);
             this.Controls.Add(this.buttonRow2);
             this.Controls.Add(this.buttonRow1);
+            this.Controls.Add(this.labelStopWatch);
             this.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.DoubleBuffered = true;
             this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;

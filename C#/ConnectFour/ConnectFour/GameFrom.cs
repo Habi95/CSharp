@@ -8,6 +8,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Globalization;
 using System.Linq;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,7 +17,7 @@ namespace ConnectFour
 {
     public partial class GameFrom : Form
     {
-        private Rectangle[] boardColumns;
+       // private Rectangle[] boardColumns;
         private int[,] board;
         private int idOfPlayer1 = 1;
         private int idOfPlayer2 = 2;
@@ -29,19 +30,44 @@ namespace ConnectFour
         bool hasWon = false;
         int playWon;
         Controller controller;
+        PictureBox picBox;
         public GameFrom()
         {
             InitializeComponent();
             timer.Start();
             stopwatch = new Stopwatch();
-            boardColumns = new Rectangle[7];
+            //boardColumns = new Rectangle[7];
             board = new int[6, 7];
             graph = this.CreateGraphics();
             controller = new Controller();
-
+            CreateScreen();
+           
 
 
         }
+        private void CreateScreen()
+        {
+            if (!hasStarted)
+            {
+            var img = Properties.Resources.GampePlayFourWin;
+            picBox = new PictureBox()
+            {
+                Image = img,
+                Location = new Point(200, 10),
+                Size = new Size(img.Width, img.Height)
+            };
+            Controls.Add(picBox);
+            }
+            else
+            {               
+                Controls.Remove(picBox);
+                picBox = null;
+            }
+
+            
+        }
+
+      
 
         private void GameFrom_Paint(object sender, PaintEventArgs e)
         {
@@ -91,7 +117,7 @@ namespace ConnectFour
         {
             if (hasStarted)
             {
-                counter++;
+                
                 Button button = (Button)sender;
                 int row = int.Parse(button.Text) - 1;
                 int? column = null;
@@ -100,28 +126,31 @@ namespace ConnectFour
                     var k = board[i, row];
                     if (k == 0)
                     {
+                        counter++;
                         column = i;
                         if (counter % 2 == 0)
                         {
+                            
                             board[i, row] = idOfPlayer2;
                             labelHowIsMove.Text = string.IsNullOrEmpty(player1Name) ? "Player1 is on turn" : $"{player1Name} your Turn";
                             var x = Winner(idOfPlayer2);
                             if (x == idOfPlayer2)
                             {
                                 hasWon = true;
-                                playWon = idOfPlayer1;
+                                playWon = idOfPlayer2;
                             }
                             break;
                         }
                         else
                         {
+                            
                             board[i, row] = idOfPlayer1;
                             labelHowIsMove.Text = string.IsNullOrEmpty(player2Name) ? "Player2 is on turn" : $"{player2Name} your Turn";
                             var x = Winner(idOfPlayer1);
                             if (x == idOfPlayer1)
                             {
                                 hasWon = true;
-                                playWon = idOfPlayer2;
+                                playWon = idOfPlayer1;
                             }
                             break;
                         }
@@ -152,8 +181,11 @@ namespace ConnectFour
             textBoxPlayer1.Hide();
             textBoxPlayer2.Hide();
             labelHowIsMove.Text = string.IsNullOrEmpty(player1Name) ? "Player1 is on turn" : $"{player1Name} your Turn";
+            CreateScreen();
+            Refresh();
             OnPaint(null);
-
+            
+             
         }
 
         private void timer_Tick(object sender, EventArgs e)
@@ -169,7 +201,11 @@ namespace ConnectFour
             hasStarted = false;
             hasWon = false;
             counter = 0;
+            CreateScreen();
+            labelHowIsMove.Text = "How is in Move    ";
             Refresh();
         }
+
+       
     }
 }
